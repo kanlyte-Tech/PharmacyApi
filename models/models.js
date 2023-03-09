@@ -10,7 +10,7 @@ const id = (schema) => {
     },
   });
 };
-//model for registering a new manager
+//model for registering a new employee
 const registeremployeeSchema = new mongoose.Schema({
   e_name: {
     type: String,
@@ -33,7 +33,7 @@ const registeremployeeSchema = new mongoose.Schema({
 id(registeremployeeSchema);
 const Employee = new mongoose.model("employees", registeremployeeSchema);
 
-//model for adding a new pharmacy
+//model for adding a new business
 const registerbusinessschema = new mongoose.Schema({
   b_name: {
     type: String,
@@ -63,12 +63,46 @@ const registerbusinessschema = new mongoose.Schema({
 id(registerbusinessschema);
 const Business = mongoose.model("business", registerbusinessschema);
 
+//model for adding a new manager
+const registermanagerschema = new mongoose.Schema({
+  m_name: {
+    type: String,
+    required: true,
+  },
+  m_number: {
+    type: Number,
+    required: true,
+  },
+  m_location: {
+    type: String,
+    required: true,
+  },
+  m_email: {
+    type: String,
+    required: true,
+  },
+  m_password: {
+    type: String,
+    required: true,
+  },
+  creation_date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+id(registermanagerschema);
+const Manager = mongoose.model("manager", registermanagerschema);
+
+//model for adding a new category
 const categorySchema = new mongoose.Schema({
   category_name: {
     type: String,
     required: true,
   },
-
+  b_id: {
+    type: String,
+    required: true,
+  },
   category_date: {
     type: Date,
     default: Date.now,
@@ -80,4 +114,5 @@ module.exports = {
   Employee,
   Business,
   Category,
+  Manager,
 };
