@@ -33,17 +33,21 @@ const registeremployeeSchema = new mongoose.Schema({
 id(registeremployeeSchema);
 const Employee = new mongoose.model("employees", registeremployeeSchema);
 
-//model for adding a new business
-const registerbusinessschema = new mongoose.Schema({
-  b_name: {
+//model for adding a new pharmacy
+const registerpharmacyschema = new mongoose.Schema({
+  ph_id: {
     type: String,
     required: true,
   },
-  b_location: {
+  ph_name: {
     type: String,
     required: true,
   },
-  b_owner: {
+  ph_location: {
+    type: String,
+    required: true,
+  },
+  ph_owner: {
     type: String,
     required: true,
   },
@@ -60,8 +64,8 @@ const registerbusinessschema = new mongoose.Schema({
     default: Date.now,
   },
 });
-id(registerbusinessschema);
-const Business = mongoose.model("business", registerbusinessschema);
+id(registerpharmacyschema);
+const Pharmacy = mongoose.model("pharmacy", registerpharmacyschema);
 
 //model for adding a new manager
 const registermanagerschema = new mongoose.Schema({
@@ -112,7 +116,7 @@ id(categorySchema);
 const Category = mongoose.model("category", categorySchema);
 module.exports = {
   Employee,
-  Business,
+  Pharmacy,
   Category,
   Manager,
 };

@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 //middle wares
 app.use("/api/v6/", require("./api/employee"));
 app.use("/api/v6/", require("./api/manager"));
+app.use("/api/v6/", require("./api/pharmacy"));
 
 //connects the database to run from the app / index file.
 ConnectDB();
