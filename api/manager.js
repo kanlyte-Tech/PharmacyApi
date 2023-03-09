@@ -6,7 +6,7 @@ const router = express.Router();
 router.post("/new/manager", async (req, res) => {
   try {
     const m_check = await Manager.findOne({
-      $and: [{ m_name: req.body.m_name }, { m_email: req.body.m_email }],
+      $and: [{ m_number: req.body.m_number }, { m_email: req.body.m_email }],
     });
 
     if (m_check) {
