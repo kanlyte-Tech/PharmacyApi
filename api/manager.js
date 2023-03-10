@@ -41,7 +41,7 @@ router.post("/new/manager", async (req, res) => {
 });
 
 //api for loging in of the manager
-router.post("login/manager", async (req, res) => {
+router.post("/login/manager", async (req, res) => {
   try {
     const manager = await Manager.findOne({
       $and: [
