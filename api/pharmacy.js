@@ -46,11 +46,11 @@ router.put("/edit/pharmacy/id:", async (req, res) => {
       { _id: req.params.id },
       {
         $set: {
-          ph_name: req.body.ph_name || current_business.ph_name,
-          ph_location: req.body.ph_location || current_business.ph_location,
-          ph_owner: req.body.ph_owner || current_business.ph_owner,
-          owner_email: req.body.owner_email || current_business.owner_email,
-          owner_tel: req.body.owner_tel || current_business.owner_tel,
+          ph_name: req.body.ph_name || current_pharmacy.ph_name,
+          ph_location: req.body.ph_location || current_pharmacy.ph_location,
+          ph_owner: req.body.ph_owner || current_pharmacy.ph_owner,
+          owner_email: req.body.owner_email || current_pharmacy.owner_email,
+          owner_tel: req.body.owner_tel || current_pharmacy.owner_tel,
         },
       }
     );
@@ -146,6 +146,30 @@ router.get("/one/pharmacy/:id", async (req, res) => {
     });
   } catch (error) {
     res.send({ status: false, data: "An Error Occured", result: error });
+  }
+});
+//api for displaying pharmacies by manager id
+router.get("/pharmacy/manager/:m_id", async (req, res) => {
+  try {
+    const pharmacies = await Pharmacy.find({ m_id: req.params.m_id });
+    if (pharmacies) {
+      res.send({
+        status: true,
+        data: "pharmacies available",
+        result: pharmacies,
+      });
+    } else {
+      res.send({
+        data: "No pharmacies for the manager",
+        status: false,
+      });
+    }
+  } catch (error) {
+    res.send({
+      data: "un expected error",
+      result: error,
+      status: false,
+    });
   }
 });
 

@@ -11,13 +11,14 @@ app.use(express.json());
 //default get route
 // get api
 app.get("/", (req, res) => {
-  res.send("You are in a wrong place. Please find your way out of here!");
+  res.redirect("https://hostels-client.vercel.app/");
+  // res.send("You are in a wrong place. Please find your way out of here!");
 });
 
 //middle wares
-app.use("/api/v6/", require("./api/employee"));
-app.use("/api/v6/", require("./api/manager"));
-app.use("/api/v6/", require("./api/pharmacy"));
+app.use("/api/v6", require("./api/employee"));
+app.use("/api/v6", require("./api/manager"));
+app.use("/api/v6", require("./api/pharmacy"));
 
 //connects the database to run from the app / index file.
 ConnectDB();

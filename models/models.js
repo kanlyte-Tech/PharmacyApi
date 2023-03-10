@@ -35,7 +35,7 @@ const Employee = new mongoose.model("employees", registeremployeeSchema);
 
 //model for adding a new pharmacy
 const registerpharmacyschema = new mongoose.Schema({
-  ph_id: {
+  m_id: {
     type: String,
     required: true,
   },
@@ -114,9 +114,30 @@ const categorySchema = new mongoose.Schema({
 });
 id(categorySchema);
 const Category = mongoose.model("category", categorySchema);
+
+//model for adding a supplier
+const supplierschema = new mongoose.Schema({
+  s_name: {
+    type: String,
+  },
+  s_contact: {
+    type: Number,
+  },
+  s_email: {
+    type: String,
+  },
+  date_joined: {
+    type: Date,
+    default: Date.now,
+  },
+});
+id(supplierschema);
+const Supplier = new mongoose.model("supplier", supplierschema);
+
 module.exports = {
   Employee,
   Pharmacy,
   Category,
   Manager,
+  Supplier,
 };
