@@ -20,6 +20,7 @@ app.use("/api/v6", require("./api/employee"));
 app.use("/api/v6", require("./api/manager"));
 app.use("/api/v6", require("./api/pharmacy"));
 app.use("/api/v6", require("./api/drug"));
+app.use("/api/v6", require("./api/category"));
 
 //connects the database to run from the app / index file.
 ConnectDB();

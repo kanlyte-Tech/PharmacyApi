@@ -1,5 +1,5 @@
 const express = require("express");
-const { Drug } = require("../models/models");
+const { Drug, Category } = require("../models/models");
 const router = express.Router();
 
 // adding a new drug.
