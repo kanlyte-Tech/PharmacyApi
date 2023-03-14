@@ -55,6 +55,7 @@ router.post("/login/manager", async (req, res) => {
         data: "Login successfully",
         result: manager,
       });
+
     } else {
       res.send({
         data: "No matching details",
