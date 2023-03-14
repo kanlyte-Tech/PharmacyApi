@@ -124,6 +124,9 @@ const supplierschema = new mongoose.Schema({
   s_name: {
     type: String,
   },
+  ph_id: {
+    type: String,
+  },
   s_contact: {
     type: Number,
   },
@@ -131,8 +134,7 @@ const supplierschema = new mongoose.Schema({
     type: String,
   },
   date_joined: {
-    type: Date,
-    default: Date.now,
+    type: String,
   },
 });
 id(supplierschema);
