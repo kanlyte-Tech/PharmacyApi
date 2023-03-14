@@ -22,6 +22,7 @@ app.use("/api/v6", require("./api/pharmacy"));
 app.use("/api/v6", require("./api/drug"));
 app.use("/api/v6", require("./api/category"));
 app.use("/api/v6", require("./api/supplier"));
+app.use("/api/v6", require("./api/stock"));
 
 //connects the database to run from the app / index file.
 ConnectDB();

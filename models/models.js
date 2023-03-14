@@ -177,6 +177,30 @@ const drugschema = new mongoose.Schema({
 id(drugschema);
 const Drug = new mongoose.model("drug", drugschema);
 
+//model for adding stock
+const stockschema = new mongoose.Schema({
+  s_name: {
+    type: String,
+  },
+  ph_id: {
+    type: String,
+  },
+  drug_supplied: {
+    type: String,
+  },
+  drug_quantity: {
+    type: String,
+  },
+  total_amount: {
+    type: Number,
+  },
+  date_of_supply: {
+    type: String,
+  },
+});
+id(stockschema);
+const Stock = new mongoose.model("stock", stockschema);
+
 module.exports = {
   Employee,
   Pharmacy,
@@ -184,4 +208,5 @@ module.exports = {
   Manager,
   Supplier,
   Drug,
+  Stock,
 };
