@@ -1,5 +1,5 @@
 const express = require("express");
-const { Employee } = require("../models/models");
+const { Employee, Pharmacy } = require("../models/models");
 const router = express.Router();
 
 //route for registering an employee
@@ -14,6 +14,8 @@ router.post("/new/employee", async (req, res) => {
     });
   } else {
     const employee = new Employee({
+      m_id: req.body.m_id,
+      ph_id: req.body.ph_id,
       e_name: req.body.e_name,
       e_email: req.body.e_email,
       e_number: req.body.e_number,
@@ -33,6 +35,41 @@ router.post("/new/employee", async (req, res) => {
         data: "Un expected error",
       });
     }
+  }
+});
+
+//employee login..........
+
+router.post("/login/employee", async (req, res) => {
+  try {
+    const employee = await Employee.find({
+      $and: [
+        { e_email: req.body.e_email },
+        { e_password: req.body.e_password },
+      ],
+    });
+    if (employee) {
+      const pharmacy = await Pharmacy.find();
+      const ph = pharmacy.filter((b) => {
+        return b.id === employee[0].ph_id;
+      });
+      res.send({
+        result: ph,
+        status: true,
+        data: `loged in to ${ph[0].ph_name}`,
+      });
+    } else {
+      res.send({
+        status: false,
+        data: "No matching details",
+      });
+    }
+  } catch (error) {
+    res.send({
+      status: false,
+      result: error,
+      data: "Un expected error",
+    });
   }
 });
 
@@ -143,6 +180,29 @@ router.get("/one/employee/:id", async (req, res) => {
       result: employee,
       data: "My employee",
     });
+  } catch (error) {
+    res.send({ status: false, data: "An Error Occured", result: error });
+  }
+});
+
+//api for displaying an emloyee by ph_id
+
+router.get("/employee/pharmacy/:ph_id", async (req, res) => {
+  try {
+    const employee = await Employee.find({ ph_id: req.params.ph_id });
+    if (employee) {
+      res.send({
+        status: true,
+        result: employee,
+        data: "My employee",
+      });
+    } else {
+      res.send({
+        status: false,
+        // result: employee,
+        data: "No employee",
+      });
+    }
   } catch (error) {
     res.send({ status: false, data: "An Error Occured", result: error });
   }

@@ -12,6 +12,14 @@ const id = (schema) => {
 };
 //model for registering a new employee
 const registeremployeeSchema = new mongoose.Schema({
+  m_id: {
+    type: String,
+    required: true,
+  },
+  ph_id: {
+    type: String,
+    required: true,
+  },
   e_name: {
     type: String,
     required: true,
@@ -103,7 +111,7 @@ const categorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  b_id: {
+  ph_id: {
     type: String,
     required: true,
   },
@@ -134,10 +142,48 @@ const supplierschema = new mongoose.Schema({
 id(supplierschema);
 const Supplier = new mongoose.model("supplier", supplierschema);
 
+//model for drugs
+
+const drugschema = new mongoose.Schema({
+  ph_id: {
+    type: String,
+  },
+  drug_category: {
+    type: String,
+  },
+  drug_name: {
+    type: String,
+  },
+  drug_quantity: {
+    type: String,
+  },
+  cost_price: {
+    type: Number,
+  },
+  selling_price: {
+    type: Number,
+  },
+  manufacturing_date: {
+    type: String,
+  },
+  expiry_date: {
+    type: String,
+  },
+  barcode_no: {
+    type: String,
+  },
+  drug_image: {
+    type: String,
+  },
+});
+id(drugschema);
+const Drug = new mongoose.model("drug", drugschema);
+
 module.exports = {
   Employee,
   Pharmacy,
   Category,
   Manager,
   Supplier,
+  Drug,
 };

@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post("/new/category", async (req, res) => {
   try {
-    const category_check = new Category.findOne({
+    const category_check = await Category.findOne({
       category_name: req.body.category_name,
     });
     if (category_check) {
@@ -14,9 +14,9 @@ router.post("/new/category", async (req, res) => {
         result: category_check,
       });
     } else {
-      const new_category = await Category({
+      const new_category = new Category({
         category_name: req.body.category_name,
-        b_id: req.body.b_id,
+        p_id: req.body.p_id,
       });
       const category = new_category.save();
 
