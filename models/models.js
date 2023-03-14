@@ -12,6 +12,10 @@ const id = (schema) => {
 };
 //model for registering a new employee
 const registeremployeeSchema = new mongoose.Schema({
+  ph_id: {
+    type: String,
+    required: true,
+  },
   e_name: {
     type: String,
     required: true,

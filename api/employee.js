@@ -14,6 +14,7 @@ router.post("/new/employee", async (req, res) => {
     });
   } else {
     const employee = new Employee({
+      ph_id: req.body.ph_id,
       e_name: req.body.e_name,
       e_email: req.body.e_email,
       e_number: req.body.e_number,
